@@ -1,0 +1,27 @@
+<div class="content" role="main">
+  <div>{{ isLogin ? "sign in" : "sign up" }}</div>
+  <div>username：<input type="text" [(ngModel)]="username" /></div>
+  <div>password：<input type="password" [(ngModel)]="password" /></div>
+  <div *ngIf="!isLogin">
+    confirm password：<input type="password" [(ngModel)]="confirmPwd" />
+  </div>
+  <div class="tips">{{ tips }}</div>
+  <div>
+    <button (click)="submit()">{{ isLogin ? "sign in" : "sign up" }}</button>
+  </div>
+  <div class="sign">
+    <div (click)="changeSign()">
+      {{ isLogin ? "sign up" : "sign in" }}
+    </div>
+  </div>
+</div>
+
+<style>
+  .tips {
+    color: red;
+  }
+  .sign {
+    color: blue;
+    cursor: pointer;
+  }
+</style>

@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://oliver.connor666.ml",
+    "secure": false,
+    "changeOrigin": true
+  }
+}
