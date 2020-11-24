@@ -17,6 +17,7 @@ export class SignInComponent implements OnInit {
   confirmPwd = '';
   tips = '';
   isLogin = true;
+  logining = false;
 
   // 通过构造函数注入的方式使用服务
   constructor(private services: SignService, private router: Router) {}
@@ -26,6 +27,7 @@ export class SignInComponent implements OnInit {
     if (this.router.url === '/sign') {
       this.router.navigate(['/home']);
     }
+    this.logining = false;
   }
 
   changeSign(): void {
@@ -37,6 +39,7 @@ export class SignInComponent implements OnInit {
    */
   // tslint:disable-next-line:typedef
   login(): void {
+    if (this.logining) { return; }
     if (this.trim(this.username) === '') {
       this.tips = 'username is required.';
       return;
@@ -45,9 +48,11 @@ export class SignInComponent implements OnInit {
       this.tips = 'Password is required.';
       return;
     }
+    this.logining = true;
     const data = { username: this.username, password: this.password };
     this.services.login(data).subscribe(
       res => {
+        this.logining = false;
         console.log(res);
         if (res.success === 1) {
           console.log(1);
@@ -58,11 +63,13 @@ export class SignInComponent implements OnInit {
         }
       },
       error => {
+        this.logining = false;
         console.error(error);
       }
     );
   }
   signUp(): void {
+    if (this.logining) { return; }
     if (this.trim(this.username) === '') {
       this.tips = 'username is required.';
       return;
@@ -79,6 +86,7 @@ export class SignInComponent implements OnInit {
       this.tips = 'Password and confirm Password must be same.';
       return;
     }
+    this.logining = true;
     const data = {
       username: this.username,
       password: this.password,
@@ -86,6 +94,7 @@ export class SignInComponent implements OnInit {
     };
     this.services.signUp(data).subscribe(
       res => {
+        this.logining = false;
         console.log(res);
         if (res.success === 1) {
           console.log(1);
@@ -97,6 +106,7 @@ export class SignInComponent implements OnInit {
         }
       },
       error => {
+        this.logining = false;
         console.error(error);
       }
     );

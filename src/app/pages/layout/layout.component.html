@@ -1,0 +1,28 @@
+<div class="content " role="main">
+  <div class="left-menu">
+    <div class="logo-title">
+      My dream app
+    </div>
+    <ul nz-menu nzMode="inline">
+      <a nz-menu-item [nzSelected]="selectMenu('/home')" routerLink="/home">Home</a>
+    </ul>
+    <ul nz-menu nzMode="inline">
+      <li nz-submenu nzTitle="Navigation Two" nzIcon="mail" [nzOpen]="selectOpen('/home/')">
+        <ul>
+          <a nz-menu-item [nzSelected]="selectMenu('/home/poster')" routerLink="/home/poster">Poster</a>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="top-header">
+    <div>layout</div>
+    <div class="top-right">
+      <button (click)="logOut()">log out</button>
+    </div>
+  </div>
+  <div class="center">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+

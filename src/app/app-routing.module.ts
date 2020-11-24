@@ -8,13 +8,8 @@ import { SignInComponent } from './pages/sign/sign-in.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  {
-    path: 'home',
     loadChildren: () =>
-      import('./pages/home/home.module').then(m => m.HomeModule),
+      import('./pages/layout/layout.module').then(m => m.LayoutModule),
     // 添加针对当前路由的 canActivate 路由守卫
     canActivate: [AuthGuard]
   },

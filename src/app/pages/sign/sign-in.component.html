@@ -7,7 +7,7 @@
   </div>
   <div class="tips">{{ tips }}</div>
   <div>
-    <button (click)="submit()">{{ isLogin ? "sign in" : "sign up" }}</button>
+    <button (click)="submit()">{{ logining ? 'signing' : isLogin ? "sign in" : "sign up" }}</button>
   </div>
   <div class="sign">
     <div (click)="changeSign()">
