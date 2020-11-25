@@ -9,11 +9,19 @@ import { PosterService } from '../../services/poster.service';
 })
 export class PosterComponent implements OnInit {
   title = 'my-dream-app';
-  loading = true;
-  listOfData: [] = [];
+  loading = false;
+  listOfData: any = [];
   constructor(private router: Router, private poster: PosterService) {}
 
   ngOnInit(): void {
+    this.getPoster();
+  }
+
+  getPoster(): void {
+    if (this.loading) {
+      return;
+    }
+    this.loading = true;
     this.poster.getPoster().subscribe(
       res => {
         this.loading = false;

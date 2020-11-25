@@ -23,7 +23,7 @@ import { PosterService } from './services/poster.service';
 
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import {NzButtonModule} from 'ng-zorro-antd/button';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { IconDefinition } from '@ant-design/icons-angular';
 import { UserOutline, LockOutline } from '@ant-design/icons-angular/icons';

@@ -1,5 +1,16 @@
 .content {
   margin: 20px;
-  background-color: #ffffff;
   height: 100%;
+  .button-box {
+    background-color: #ffffff;
+    display: flex;
+    min-height: 50px;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+  }
+  .table-box {
+    background-color: #ffffff;
+  }
 }

@@ -1,4 +1,10 @@
 <div class="content" role="main">
+  <div class="button-box">
+    <button nz-button nzType="primary" [disabled]="loading" (click)="getPoster()">Search</button>
+  </div>
+  <div class="table-box">
+
+  </div>
   <nz-table
     #headerTable
     [nzData]="listOfData"
@@ -7,6 +13,7 @@
   >
     <thead>
       <tr>
+        <th>Id</th>
         <th>Name</th>
         <th>Mobile</th>
         <th>Email</th>
@@ -14,6 +21,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let data of headerTable.data">
+        <td>{{ data.id }}</td>
         <td>{{ data.name }}</td>
         <td>{{ data.mobile }}</td>
         <td>{{ data.email }}</td>
