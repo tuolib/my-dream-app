@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 // 引入服务
 import { SignService } from '../../services/sign.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -18,6 +18,7 @@ export class SignInComponent implements OnInit {
   tips = '';
   isLogin = true;
   logining = false;
+
 
   // 通过构造函数注入的方式使用服务
   constructor(private services: SignService, private router: Router) {}
@@ -113,6 +114,7 @@ export class SignInComponent implements OnInit {
   }
 
   submit(): void {
+    this.tips = '';
     if (this.isLogin) {
       this.login();
     } else {
@@ -124,4 +126,5 @@ export class SignInComponent implements OnInit {
     const reg = /^\s+|\s+$/g;
     return str.replace(reg, '');
   }
+
 }

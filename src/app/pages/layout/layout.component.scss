@@ -1,25 +1,71 @@
 
-.left-menu {
+.top-header {
   position: fixed;
   left: 0;
   top: 0;
-  height: 100%;
-  width: 220px;
-  overflow-y: auto;
-  border-right: 1px solid #dee2e6;
+  height: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  //padding-left: 15px;
+  //border-bottom: 1px solid #dee2e6;
+  //box-shadow: 0 0 4px rgba(0,0,0,.25);
+  box-shadow: 0 2px 8px #f0f1f2;
+  background-color: #ffffff;
+  .top-right {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding-right: 15px;
+  }
+
   .logo-title {
     height: 70px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    //justify-content: center;
     font-size: 18px;
-  }
-  a {
-    color: black;
-    &.ant-menu-item-selected {
-      color: #1890ff;
+    .logo-collapsed {
+      width: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid #dee2e6;
+      padding: 0 20px;
+      margin-right: 20px;
+      i {
+        font-size: 20px;
+      }
+    }
+    .logo-img {
+      //margin-left: 50px;
+      width: 30px;
+      height: 30px;
+    }
+    .logo-name {
+      white-space: nowrap;
+      font-size: 30px;
     }
   }
+}
+.left-menu {
+  position: fixed;
+  left: 0;
+  top: 70px;
+  //height: calc(100% - 50px);
+  height: calc(100vh -  50px);
+  width: 220px;
+  overflow-y: auto;
+  //border-right: 1px solid #dee2e6;
+  box-shadow: 0 0.5rem 1rem 0 rgba(44,51,73,.1);
+  background-color: #ffffff;
+  //a {
+  //  color: black;
+  //  &.ant-menu-item-selected {
+  //    color: #1890ff;
+  //  }
+  //}
   [nz-menu] {
     width: 218px;
   }
@@ -27,27 +73,22 @@
     border-right: none;
   }
 }
-.top-header {
-  position: fixed;
-  left: 220px;
-  top: 0;
-  height: 50px;
-  width: calc(100% - 220px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 15px;
-  border-bottom: 1px solid #dee2e6;
-  //box-shadow: 0 0 4px rgba(0,0,0,.25);
-  .top-right {
-    display: flex;
-    align-items: center;
-    justify-content: right;
-    padding-right: 15px;
-  }
-}
 .center {
   padding-left: 220px;
-  padding-top: 50px;
+  padding-top: 70px;
   width: 100%;
+  min-height: 100vh;
+  background-color: #edf1f7;
+}
+.collapsed {
+  .top-header {
+
+  }
+  .left-menu {
+    width: 70px;
+  }
+
+  [nz-menu] {
+    width: 70px;
+  }
 }

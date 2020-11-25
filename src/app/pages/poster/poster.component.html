@@ -1,3 +1,24 @@
 <div class="content" role="main">
-  poster
+  <nz-table
+    #headerTable
+    [nzData]="listOfData"
+    [nzPageSize]="50"
+    [nzLoading]="loading"
+  >
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Mobile</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of headerTable.data">
+        <td>{{ data.name }}</td>
+        <td>{{ data.mobile }}</td>
+        <td>{{ data.email }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
 </div>
+

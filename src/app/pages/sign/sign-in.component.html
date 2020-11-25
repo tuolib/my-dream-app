@@ -1,19 +1,77 @@
 <div class="content" role="main">
-  <div>{{ isLogin ? "sign in" : "sign up" }}</div>
-  <div>username：<input type="text" [(ngModel)]="username" /></div>
-  <div>password：<input type="password" [(ngModel)]="password" /></div>
-  <div *ngIf="!isLogin">
-    confirm password：<input type="password" [(ngModel)]="confirmPwd" />
-  </div>
-  <div class="tips">{{ tips }}</div>
-  <div>
-    <button (click)="submit()">{{ logining ? 'signing' : isLogin ? "sign in" : "sign up" }}</button>
-  </div>
-  <div class="sign">
-    <div (click)="changeSign()">
-      {{ isLogin ? "sign up" : "sign in" }}
+
+  <div
+    nz-form
+    class="login-form"
+  >
+    <div class="sign-logo">
+      <img class="logo-img" src="../../../assets/angular.svg" alt="">
+      <span class="logo-name">My dream app</span>
     </div>
+    <div class="input-box">
+      <nz-input-group nzPrefixIcon="user">
+        <input
+          type="text"
+          nz-input
+          placeholder="Username"
+          [(ngModel)]="username"
+        />
+      </nz-input-group>
+    </div>
+    <div class="input-box">
+      <nz-input-group nzPrefixIcon="lock">
+        <input
+          type="password"
+          nz-input
+          placeholder="Password"
+          [(ngModel)]="password"
+        />
+      </nz-input-group>
+    </div>
+    <div class="input-box">
+      <nz-input-group nzPrefixIcon="lock" *ngIf="!isLogin">
+        <input
+          type="password"
+          nz-input
+          placeholder="Password"
+          [(ngModel)]="confirmPwd"
+        />
+      </nz-input-group>
+    </div>
+    <div class="tips">{{ tips }}</div>
+    <button
+      nz-button
+      class="login-form-button login-form-margin"
+      [nzType]="'primary'"
+      [disabled]="logining ? true : false"
+      [nzLoading]="logining"
+      (click)="submit()"
+    >
+      {{ logining ? "Signing" : isLogin ? "Sign in" : "Sign up" }}
+    </button>
+    <span></span>
+    Or
+    <a (click)="changeSign()"> {{ isLogin ? "sign up" : "sign in" }} now! </a>
   </div>
+<!--  <div>-->
+<!--    <div>{{ isLogin ? "sign in" : "sign up" }}</div>-->
+<!--    <div>username：<input type="text" [(ngModel)]="username" /></div>-->
+<!--    <div>password：<input type="password" [(ngModel)]="password" /></div>-->
+<!--    <div *ngIf="!isLogin">-->
+<!--      confirm password：<input type="password" [(ngModel)]="confirmPwd" />-->
+<!--    </div>-->
+<!--    <div class="tips">{{ tips }}</div>-->
+<!--    <div>-->
+<!--      <button (click)="submit()">-->
+<!--        {{ logining ? "signing" : isLogin ? "sign in" : "sign up" }}-->
+<!--      </button>-->
+<!--    </div>-->
+<!--    <div class="sign">-->
+<!--      <div (click)="changeSign()">-->
+<!--        {{ isLogin ? "sign up" : "sign in" }}-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
 </div>
 
 <style>

@@ -1,23 +1,47 @@
-<div class="content " role="main">
+<div class="content " [class]="isCollapsed ? 'collapsed' : ''" role="main">
   <div class="left-menu">
-    <div class="logo-title">
-      My dream app
-    </div>
-    <ul nz-menu nzMode="inline">
-      <a nz-menu-item [nzSelected]="selectMenu('/home')" routerLink="/home">Home</a>
-    </ul>
-    <ul nz-menu nzMode="inline">
-      <li nz-submenu nzTitle="Navigation Two" nzIcon="mail" [nzOpen]="selectOpen('/home/')">
-        <ul>
-          <a nz-menu-item [nzSelected]="selectMenu('/home/poster')" routerLink="/home/poster">Poster</a>
-        </ul>
-      </li>
+    <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <ng-container [ngTemplateOutlet]="menuTpl" [ngTemplateOutletContext]="{ $implicit: menus }"></ng-container>
+      <ng-template #menuTpl let-menus>
+        <ng-container *ngFor="let menu of menus">
+          <li
+            *ngIf="!menu.children"
+            nz-menu-item
+            [nzPaddingLeft]="menu.level * 24"
+            [nzDisabled]="menu.disabled"
+            [nzSelected]="selectMenu(menu)"
+            (click)="selectLink(menu)"
+          >
+            <i nz-icon [nzType]="menu.icon" *ngIf="menu.icon"></i>
+            <span>{{ menu.title }}</span>
+          </li>
+          <li
+            *ngIf="menu.children"
+            nz-submenu
+            [nzPaddingLeft]="menu.level * 24"
+            [nzOpen]="menu.open"
+            [nzTitle]="menu.title"
+            [nzIcon]="menu.icon"
+            [nzDisabled]="menu.disabled"
+          >
+            <ul>
+              <ng-container [ngTemplateOutlet]="menuTpl" [ngTemplateOutletContext]="{ $implicit: menu.children }"></ng-container>
+            </ul>
+          </li>
+        </ng-container>
+      </ng-template>
     </ul>
   </div>
   <div class="top-header">
-    <div>layout</div>
+    <div class="logo-title">
+      <button class="logo-collapsed" nz-button nzType="text" nzBlock (click)="toggleCollapsed()">
+        <i nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+      </button>
+<!--      <img class="logo-img" src="../../../assets/angular.svg" alt="">-->
+      <span class="logo-name">My dream app</span>
+    </div>
     <div class="top-right">
-      <button (click)="logOut()">log out</button>
+      <button nz-button nzType="primary" (click)="logOut()">Log out</button>
     </div>
   </div>
   <div class="center">

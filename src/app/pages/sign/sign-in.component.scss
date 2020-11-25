@@ -1,0 +1,36 @@
+.content {
+  padding-top: 50px;
+  .sign-logo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .logo-img {
+      width: 50px;
+      height: 50px;
+    }
+    .logo-name {
+      font-size: 24px;
+    }
+  }
+}
+
+.login-form {
+  max-width: 300px;
+  margin: 0px auto;
+}
+.input-box {
+  margin: 15px 0;
+}
+
+.login-form-margin {
+  margin-bottom: 16px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}

@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from '../home/home.component';
-import { PosterComponent } from '../poster/poster.component';
 import { LayoutComponent } from './layout.component';
+import {AuthGuard} from '../../auth/auth.guard';
 
 export const layoutRoutes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: LayoutComponent,
     children: [
       {
@@ -16,8 +16,10 @@ export const layoutRoutes: Routes = [
       },
       {
         path: 'poster',
-        component: PosterComponent
-      }
+        loadChildren: () =>
+          import('../poster/poster.module').then(m => m.PosterModule),
+        canActivate: [AuthGuard]
+      },
     ]
   }
 ];

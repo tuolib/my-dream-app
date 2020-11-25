@@ -7,6 +7,10 @@ import { SignInComponent } from './pages/sign/sign-in.component';
 
 const routes: Routes = [
   {
+    path: 'sign',
+    component: SignInComponent
+  },
+  {
     path: '',
     loadChildren: () =>
       import('./pages/layout/layout.module').then(m => m.LayoutModule),
@@ -14,12 +18,8 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'sign',
-    component: SignInComponent
-  },
-  {
     path: '**',
-    redirectTo: 'home'
+    redirectTo: '/'
   }
 ];
 
