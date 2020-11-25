@@ -57,9 +57,11 @@
   height: calc(100vh -  50px);
   width: 220px;
   overflow-y: auto;
+  overflow-x: hidden;
   //border-right: 1px solid #dee2e6;
   box-shadow: 0 0.5rem 1rem 0 rgba(44,51,73,.1);
   background-color: #ffffff;
+  z-index: 100;
   //a {
   //  color: black;
   //  &.ant-menu-item-selected {
@@ -90,5 +92,42 @@
 
   [nz-menu] {
     width: 70px;
+  }
+  .center {
+    padding-left: 70px;
+  }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 576px) {
+  //.content {
+  //  .left-menu {
+  //    display: none;
+  //  }
+  //  .center {
+  //    padding-left: 0;
+  //  }
+  //}
+}
+@media screen and (max-width: 575px) {
+  .content {
+    .left-menu {
+      display: block;
+      width: 220px;
+    }
+
+    [nz-menu] {
+      width: 220px;
+    }
+    .center {
+      padding-left: 0;
+    }
+    &.collapsed {
+      .left-menu {
+        display: none;
+      }
+      .center {
+        padding-left: 0;
+      }
+    }
   }
 }

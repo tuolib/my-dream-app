@@ -1,43 +1,62 @@
-<div class="content " [class]="isCollapsed ? 'collapsed' : ''" role="main">
+<div
+  class="content "
+  [class]="isCollapsed ? 'collapsed' : ''"
+  role="main"
+  (window:resize)="onResize($event)"
+>
   <div class="left-menu">
-    <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <ng-container [ngTemplateOutlet]="menuTpl" [ngTemplateOutletContext]="{ $implicit: menus }"></ng-container>
-      <ng-template #menuTpl let-menus>
-        <ng-container *ngFor="let menu of menus">
-          <li
-            *ngIf="!menu.children"
-            nz-menu-item
-            [nzPaddingLeft]="menu.level * 24"
-            [nzDisabled]="menu.disabled"
-            [nzSelected]="selectMenu(menu)"
-            (click)="selectLink(menu)"
-          >
-            <i nz-icon [nzType]="menu.icon" *ngIf="menu.icon"></i>
-            <span>{{ menu.title }}</span>
-          </li>
-          <li
-            *ngIf="menu.children"
-            nz-submenu
-            [nzPaddingLeft]="menu.level * 24"
-            [nzOpen]="menu.open"
-            [nzTitle]="menu.title"
-            [nzIcon]="menu.icon"
-            [nzDisabled]="menu.disabled"
-          >
-            <ul>
-              <ng-container [ngTemplateOutlet]="menuTpl" [ngTemplateOutletContext]="{ $implicit: menu.children }"></ng-container>
-            </ul>
-          </li>
-        </ng-container>
-      </ng-template>
-    </ul>
+    <div class="wrapper">
+      <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+        <ng-container
+          [ngTemplateOutlet]="menuTpl"
+          [ngTemplateOutletContext]="{ $implicit: menus }"
+        ></ng-container>
+        <ng-template #menuTpl let-menus>
+          <ng-container *ngFor="let menu of menus">
+            <li
+              *ngIf="!menu.children"
+              nz-menu-item
+              [nzPaddingLeft]="menu.level * 24"
+              [nzDisabled]="menu.disabled"
+              [nzSelected]="selectMenu(menu)"
+              (click)="selectLink(menu)"
+            >
+              <i nz-icon [nzType]="menu.icon" *ngIf="menu.icon"></i>
+              <span>{{ menu.title }}</span>
+            </li>
+            <li
+              *ngIf="menu.children"
+              nz-submenu
+              [nzPaddingLeft]="menu.level * 24"
+              [nzOpen]="menu.open"
+              [nzTitle]="menu.title"
+              [nzIcon]="menu.icon"
+              [nzDisabled]="menu.disabled"
+            >
+              <ul>
+                <ng-container
+                  [ngTemplateOutlet]="menuTpl"
+                  [ngTemplateOutletContext]="{ $implicit: menu.children }"
+                ></ng-container>
+              </ul>
+            </li>
+          </ng-container>
+        </ng-template>
+      </ul>
+    </div>
   </div>
   <div class="top-header">
     <div class="logo-title">
-      <button class="logo-collapsed" nz-button nzType="text" nzBlock (click)="toggleCollapsed()">
+      <button
+        class="logo-collapsed"
+        nz-button
+        nzType="text"
+        nzBlock
+        (click)="toggleCollapsed()"
+      >
         <i nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
       </button>
-<!--      <img class="logo-img" src="../../../assets/angular.svg" alt="">-->
+      <!--      <img class="logo-img" src="../../../assets/angular.svg" alt="">-->
       <span class="logo-name">My dream app</span>
     </div>
     <div class="top-right">
@@ -48,5 +67,3 @@
     <router-outlet></router-outlet>
   </div>
 </div>
-
-

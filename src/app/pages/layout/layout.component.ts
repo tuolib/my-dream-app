@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+// import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-layout',
@@ -13,6 +14,7 @@ export class LayoutComponent implements OnInit {
   dark = false;
   idStr = '';
   isCollapsed = false;
+  innerWidth = 0;
   menus = [
     {
       level: 1,
@@ -76,6 +78,15 @@ export class LayoutComponent implements OnInit {
         getMenuBtnList(this.menus);
       }
     });
+    // Observable.fromEvent(window, 'resize')
+    //   .debounceTime(100) // 以免频繁处理
+    //   .subscribe((event: any) => {
+    //     // 这里处理页面变化时的操作,处理高度和宽度都可以
+    //     console.log('come on ..', event);
+    //     if (window.innerWidth < 576) {
+    //       this.isCollapsed = true;
+    //     }
+    //   });
   }
 
   ngOnInit(): void {
@@ -83,7 +94,28 @@ export class LayoutComponent implements OnInit {
     //   console.log(params);
     //   this.currentPath = params.name;
     // });
+    // console.log(window.innerWidth);
+    if (window.innerWidth > 1200) {
+      this.isCollapsed = false;
+    } else {
+      this.isCollapsed = true;
+    }
+    this.innerWidth = window.innerWidth;
   }
+
+  onResize(event: any): void {
+    // console.log(event.target.innerWidth);
+    this.innerWidth = event.target.innerWidth;
+    if (event.target.innerWidth < 576) {
+      this.isCollapsed = true;
+    }
+    if (event.target.innerWidth > 1200) {
+      this.isCollapsed = false;
+    } else {
+      this.isCollapsed = true;
+    }
+  }
+
   selectMenu(menu: any): boolean {
     // console.log('selectMenu');
     if (menu.children) {
@@ -102,6 +134,9 @@ export class LayoutComponent implements OnInit {
     // this.idStr = menu.idStr;
     // this.setOpen();
     this.router.navigate([menu.path]);
+    if (this.innerWidth < 1200) {
+      this.isCollapsed = true;
+    }
   }
   setOpen(): void {
     const selectId = this.idStr.split('-');
