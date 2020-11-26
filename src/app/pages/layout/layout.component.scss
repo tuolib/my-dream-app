@@ -82,23 +82,45 @@
   min-height: 100vh;
   background-color: #edf1f7;
 }
-.collapsed {
-  .top-header {
+//.collapsed {
+//  .top-header {
+//
+//  }
+//  .left-menu {
+//    width: 70px;
+//  }
+//
+//  [nz-menu] {
+//    width: 70px;
+//  }
+//  .center {
+//    padding-left: 70px;
+//  }
+//}
 
-  }
-  .left-menu {
-    width: 70px;
-  }
+@media screen and (min-width: 576px) {
+  .content {
+    .left-menu {
+      display: block;
+      width: 220px;
+      overflow-x: hidden;
+    }
 
-  [nz-menu] {
-    width: 70px;
+    [nz-menu] {
+      width: 220px;
+    }
+    .center {
+      padding-left: 220px;
+    }
+    &.collapsed {
+      .left-menu {
+        display: none;
+      }
+      .center {
+        padding-left: 0;
+      }
+    }
   }
-  .center {
-    padding-left: 70px;
-  }
-}
-
-@media screen and (max-width: 1200px) and (min-width: 576px) {
   //.content {
   //  .left-menu {
   //    display: none;
